@@ -1,16 +1,44 @@
 [
   {
-    "year": "2023",
     "img": "img here",
+    "year": "2023",
     "make": "Toyota",
     "model": "Highlander",
     "notes": "Fantastic SUV"
   },
   {
-    "year": "2021",
     "img": "img here",
+    "year": "2023",
     "make": "Honda",
     "model": "Civic",
-    "notes": "An amazing little reponsive car"
+    "notes": "An amazing little car"
+  },
+  {
+    "img": "img here",
+    "year": "2022",
+    "make": "Lexus",
+    "model": "Q38",
+    "notes": "Too Expensive"
+  },
+  {
+    "img": "img here",
+    "year": "2022",
+    "make": "Ford",
+    "model": "F150",
+    "notes": "Standard Truck"
+  },
+  {
+    "img": "img here",
+    "year": "2021",
+    "make": "Chevy",
+    "model": "Silverado",
+    "notes": "Quality 2500 Series"
+  },
+  {
+    "img": "img here",
+    "year": "2021",
+    "make": "Dodge",
+    "model": "Dart",
+    "notes": "Small affordable Car"
   }
 ]
