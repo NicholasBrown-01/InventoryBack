@@ -1,0 +1,23 @@
+{
+  "name": "inventoryback",
+  "version": "1.0.0",
+  "description": "Individual Project to practice JS and React BackEnd",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicholasBrown-01/InventoryBack.git"
+  },
+  "author": "Nicholas Brown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NicholasBrown-01/InventoryBack/issues"
+  },
+  "homepage": "https://github.com/NicholasBrown-01/InventoryBack#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
