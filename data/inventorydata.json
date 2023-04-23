@@ -1,0 +1,16 @@
+[
+  {
+    "year": "2023",
+    "img": "img here",
+    "make": "Toyota",
+    "model": "Highlander",
+    "notes": "Fantastic SUV"
+  },
+  {
+    "year": "2021",
+    "img": "img here",
+    "make": "Honda",
+    "model": "Civic",
+    "notes": "An amazing little reponsive car"
+  }
+]
