@@ -11,6 +11,6 @@ const vehicleSchema = new Schema({
   notes: { type: String, required: false }
 });
 
-const Vehicle = mongoose.model('vehicle', vehicleSchema);
+const VehicleModel = mongoose.model('vehicle', vehicleSchema);
 
-module.exports = Vehicle;
+module.exports = VehicleModel;

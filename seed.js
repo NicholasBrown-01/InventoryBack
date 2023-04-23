@@ -28,6 +28,15 @@ async function seed() {
 
   console.log('Vehicle 2 was created!');
 
+  await vehiclemodel.create({
+    year: '2022',
+    make: 'Lexus',
+    model: 'Q38',
+    notes: 'Too Expensive'
+  });
+
+  console.log('Vehicle 3 was created!');
+
   mongoose.disconnect();
 }
 

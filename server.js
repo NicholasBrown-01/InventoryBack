@@ -8,6 +8,7 @@ app.use(cors());
 require('dotenv').config();
 let vehicledata = require('./data/inventorydata.json');
 const mongoose = require('mongoose');
+const VehicleModel = require('./models/vehiclemodel.js');
 
 
 // *** SET PORT/LISTEN AND CONSOLE LOG *** //
@@ -29,16 +30,28 @@ app.get('/', (req, res) => {
   res.status(200).send('Server is running NORMALLY');
 });
 
-app.get('/vehicles', (req, res, next) => {
+// app.get('/vehicles', (req, res, next) => {
+//   try {
+//     let queriedYear = req.query.year;
+//     let foundYear = vehicledata.filter(vehicle => vehicle.year === queriedYear);
+//     res.status(200).send(foundYear);
+
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+app.get ('/vehicles', getVehicles);
+
+async function getVehicles(req, res, next) {
   try {
-    let queriedYear = req.query.year;
-    let foundYear = vehicledata.filter(vehicle => vehicle.year === queriedYear);
-    res.status(200).send(foundYear);
+    let allVehicles = await VehicleModel.find({});
+    res.status(200).send(allVehicles);
 
   } catch (error) {
-    next(error);
+    next (error);
   }
-});
+}
 
 app.get('*', (req, res) =>{
   res.status(404).send('This route does not exist');
