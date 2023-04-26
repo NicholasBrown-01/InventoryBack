@@ -6,9 +6,14 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 require('dotenv').config();
-let vehicledata = require('./data/inventorydata.json');
+// let vehicledata = require('./data/inventorydata.json');
 const mongoose = require('mongoose');
 const VehicleModel = require('./models/vehiclemodel.js');
+
+// *** APP.USES ***
+// Middleware & JSON!
+app.use(cors());
+app.use(express.json());
 
 
 // *** SET PORT/LISTEN AND CONSOLE LOG *** //
@@ -53,6 +58,18 @@ async function getVehicles(req, res, next) {
   }
 }
 
+app.post ('/modifyvehicle', postVehicle);
+
+async function postVehicle(req, res, next) {
+  try {
+    let postedVehicle = await VehicleModel.create(req.body);
+    res.status(201).send(postedVehicle);
+    console.log(`Vehicle ${postedVehicle} was added successfully`);
+  } catch (error) {
+    next (error);
+  }
+}
+
 app.get('*', (req, res) =>{
   res.status(404).send('This route does not exist');
 });
@@ -60,5 +77,6 @@ app.get('*', (req, res) =>{
 
 // *** CORS ERROR HANDLING *** //
 app.use((error, req, res, next) => {
+  console.log(error.message);
   res.status(500).send(error.message);
 });
