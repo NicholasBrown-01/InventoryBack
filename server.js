@@ -18,7 +18,7 @@ app.use(express.json());
 
 // *** SET PORT/LISTEN AND CONSOLE LOG *** //
 const PORT = process.env.PORT || 3002;
-app.listen(PORT, ()=> console.log(`!! Server Running on PORT ${PORT} !!`));
+app.listen(PORT, () => console.log(`!! Server Running on PORT ${PORT} !!`));
 
 // *** CONNECT MONGO-DB & MONGOOSE *** //
 mongoose.connect(process.env.DB_URL);
@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 //   }
 // });
 
-app.get ('/vehicles', getVehicles);
+app.get('/vehicles', getVehicles);
 
 async function getVehicles(req, res, next) {
   try {
@@ -54,11 +54,11 @@ async function getVehicles(req, res, next) {
     res.status(200).send(allVehicles);
 
   } catch (error) {
-    next (error);
+    next(error);
   }
 }
 
-app.post ('/modifyvehicle', postVehicle);
+app.post('/modifyvehicle', postVehicle);
 
 async function postVehicle(req, res, next) {
   try {
@@ -66,11 +66,42 @@ async function postVehicle(req, res, next) {
     res.status(201).send(postedVehicle);
     console.log(`Vehicle ${postedVehicle} was added successfully`);
   } catch (error) {
+    next(error);
+  }
+}
+
+app.delete('/vehicles/:vehicleID', deleteVehicle);
+
+async function deleteVehicle(req, res, next) {
+  try {
+    let id = req.params.vehicleID;
+    await VehicleModel.findByIdAndDelete(id);
+    res.status(200).send('Vehicle Deleted');
+    console.log(`The Following Vehicle was deleted:${id}`);
+
+  } catch (error) {
+    next(error);
+  }
+}
+
+app.put('/vehicles/:vehicleID', updateVehicle);
+
+async function updateVehicle(req, res, next) {
+  try {
+    let id = req.params.vehicleID;
+    let vehicleModelData = req.body;
+
+    const updated = await VehicleModel.findByIdAndUpdate (id, vehicleModelData, {new: true, overwrite: true });
+    res.status(200).send(updated);
+    console.log(`Vehicle ${id} was updated to ${updated}`);
+
+  } catch (error){
     next (error);
   }
 }
 
-app.get('*', (req, res) =>{
+
+app.get('*', (req, res) => {
   res.status(404).send('This route does not exist');
 });
 
